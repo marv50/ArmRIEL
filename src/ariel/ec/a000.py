@@ -138,6 +138,7 @@ class IntegerMutator:
         mutation_mask = mutator * sub_mask * do_mask
         new_genotype = ind_arr + mutation_mask
         return cast("Integers", new_genotype.astype(int).tolist())
+<<<<<<< HEAD
 
     @staticmethod
     def float_creep(
@@ -173,6 +174,9 @@ class IntegerMutator:
         new_genotype = ind_arr + mutation_mask
         return cast("Floats", new_genotype.astype(float).tolist())
 
+=======
+                    
+>>>>>>> upstream/main
 def main() -> None:
     """Entry point."""
     console.log(IntegersGenerator.integers(-5, 5, 5))
