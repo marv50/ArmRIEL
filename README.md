@@ -1,3 +1,34 @@
+
+![ariel-header](./docs/resources/ariel_header.svg)
+
+# ARIEL: Autonomous Robots through Integrated Evolution and Learning
+
+<!-- ## Requirements
+
+* [vscode](https://code.visualstudio.com/)
+  * [containers ext](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
+  * [container tools ext](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-containers)
+
+* Container manager:
+  * [podman desktop](https://podman.io/)
+  * [docker desktop](https://www.docker.com/products/docker-desktop/)
+  
+* [vscode containers tut](https://code.visualstudio.com/docs/devcontainers/tutorial)
+
+--- -->
+## Installation and Running
+
+This project uses [uv](https://docs.astral.sh/uv/).
+
+To run the code examples please do
+
+```bash
+uv venv
+uv sync
+uv run examples/0_render_single_frame.py
+```
+
+
 # ArmRiel + LynxRobotics Submodule Guide
 
 This guide is for teammates who already cloned the **ArmRiel** fork but haven't pulled the `LynxRobotics` submodule yet. It also explains how to keep both ArmRiel and the submodule updated.
@@ -91,43 +122,6 @@ This resets all submodules to their expected commits.
 - **After submodule pointer changes:** pull ArmRiel, then `git submodule update --recursive`
 - **Direct submodule updates:** pull inside `LynxRobotics`, commit pointer in ArmRiel
 - **Troubleshooting:** reset with `git submodule deinit -f .` + `git submodule update --init --recursive`
-
-
-
-
-
-
-
-
-
-![ariel-header](./docs/resources/ariel_header.svg)
-
-# ARIEL: Autonomous Robots through Integrated Evolution and Learning
-
-<!-- ## Requirements
-
-* [vscode](https://code.visualstudio.com/)
-  * [containers ext](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
-  * [container tools ext](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-containers)
-
-* Container manager:
-  * [podman desktop](https://podman.io/)
-  * [docker desktop](https://www.docker.com/products/docker-desktop/)
-  
-* [vscode containers tut](https://code.visualstudio.com/docs/devcontainers/tutorial)
-
---- -->
-## Installation and Running
-
-This project uses [uv](https://docs.astral.sh/uv/).
-
-To run the code examples please do
-
-```bash
-uv venv
-uv sync
-uv run examples/0_render_single_frame.py
-```
 
 <!-- ## TODO: Installation
 
@@ -308,3 +302,6 @@ This project was generated from [@cjolowicz]'s [uv hypermodern python cookiecutt
 [contributor guide]: https://github.com/Jacopo-DM/ariel/blob/main/CONTRIBUTING.md
 [command-line reference]: https://ariel.readthedocs.io/en/latest/usage.html -
 ->
+
+
+
