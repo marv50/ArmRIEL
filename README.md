@@ -28,9 +28,9 @@ uv run examples/0_render_single_frame.py
 ```
 
 
-# ArmRiel + LynxRobotics Submodule Guide
+# ArmRiel + LynxRobotics Submodule Guide (Branch-Aware)
 
-This guide is for teammates who already cloned the **ArmRiel** fork but haven't pulled the `LynxRobotics` submodule yet. It also explains how to keep both ArmRiel and the submodule updated.
+This guide is for teammates who already cloned the **ArmRiel** fork but haven't pulled the `LynxRobotics` submodule yet. It explains how to work with ArmRiel and the submodule on **any branch**, and how to keep everything updated.
 
 ---
 
@@ -42,19 +42,22 @@ From the root of your ArmRiel clone, run:
 git submodule update --init --recursive
 ```
 
-This fetches the `LynxRobotics` submodule at the correct commit.
+This fetches the `LynxRobotics` submodule at the commit ArmRiel currently points to.
 
 ---
 
-## 2. Pull latest changes (ArmRiel + submodule)
+## 2. Pull latest changes (ArmRiel + submodule) on your branch
 
-To update ArmRiel or the submodule:
+To update your current branch in ArmRiel and the submodule:
 
 ```
+# Make sure you are on your desired branch
+git checkout <your-branch>
+
 # Pull changes from ArmRiel fork
 git pull --recurse-submodules
 
-# Make sure the submodule is updated to the commit ArmRiel expects
+# Ensure the submodule is updated to the commit ArmRiel expects
 git submodule update --recursive
 ```
 
@@ -70,9 +73,12 @@ After this, a normal `git pull` will also update submodules automatically.
 
 ## 3. When ArmRiel updates the LynxRobotics submodule
 
-If the ArmRiel repo has updated the LynxRobotics pointer:
+If the current branch in ArmRiel has a new submodule pointer:
 
 ```
+# Make sure you are on the same branch
+git checkout <your-branch>
+
 # Pull the latest ArmRiel changes
 git pull
 
@@ -80,47 +86,54 @@ git pull
 git submodule update --recursive
 ```
 
-This ensures your local `LynxRobotics` folder matches the commit expected by ArmRiel.
+This ensures your local `LynxRobotics` folder matches the commit expected by ArmRiel on this branch.
 
 ---
 
 ## 4. Updating the submodule directly
 
-If you want to pull the latest changes from the LynxRobotics repo itself:
+If you need to pull changes from the LynxRobotics repo itself while on a branch:
 
 ```
 cd LynxRobotics
-git pull origin main   # or whichever branch you want
+git checkout <desired-branch>   # branch inside submodule
+git pull origin <desired-branch>
 cd ..
-git add LynxRobotics   # stage the updated commit pointer in ArmRiel
-git commit -m "Update LynxRobotics submodule"
-git push
+
+# Update the submodule pointer in ArmRiel
+git add LynxRobotics
+git commit -m "Update LynxRobotics submodule pointer on <your-branch>"
+git push origin <your-branch>
 ```
 
-This updates the submodule pointer in ArmRiel so teammates get the same version.
+> Note: Each branch in ArmRiel can point to a different submodule commit if needed.
 
 ---
 
 ## 5. Resetting submodules (if things go wrong)
 
-If the submodule gets into a weird state:
+If the submodule is in an inconsistent state:
 
 ```
 git submodule deinit -f .
 git submodule update --init --recursive
 ```
 
-This resets all submodules to their expected commits.
+This resets all submodules to the commit ArmRiel expects for the current branch.
 
 ---
 
-## ✅ Summary
+## ✅ Branch-Aware Summary
 
 - **First-time setup:** `git submodule update --init --recursive`
-- **Regular updates:** `git pull --recurse-submodules` + `git submodule update --recursive`
-- **After submodule pointer changes:** pull ArmRiel, then `git submodule update --recursive`
-- **Direct submodule updates:** pull inside `LynxRobotics`, commit pointer in ArmRiel
+- **Regular updates on your branch:**  
+  `git pull --recurse-submodules` + `git submodule update --recursive`
+- **After submodule pointer changes on a branch:** pull ArmRiel, then `git submodule update --recursive`
+- **Direct submodule updates:** pull inside `LynxRobotics`, commit pointer in ArmRiel branch
 - **Troubleshooting:** reset with `git submodule deinit -f .` + `git submodule update --init --recursive`
+
+> Always make sure you are on the correct branch in **both ArmRiel and LynxRobotics** before committing or pulling.
+
 
 
 <!-- ## TODO: Installation
