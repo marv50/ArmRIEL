@@ -1,0 +1,3 @@
+[submodule "lynx_robotics"]
+	path = lynx_robotics
+	url = https://github.com/zuxinrui/LynxRobotics
