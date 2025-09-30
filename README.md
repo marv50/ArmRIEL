@@ -1,3 +1,105 @@
+# ArmRiel + LynxRobotics Submodule Guide
+
+This guide is for teammates who already cloned the **ArmRiel** fork but haven't pulled the `LynxRobotics` submodule yet. It also explains how to keep both ArmRiel and the submodule updated.
+
+---
+
+## 1. Initialize and fetch the submodule (run **once**)
+
+From the root of your ArmRiel clone, run:
+
+```
+git submodule update --init --recursive
+```
+
+This fetches the `LynxRobotics` submodule at the correct commit.
+
+---
+
+## 2. Pull latest changes (ArmRiel + submodule)
+
+To update ArmRiel or the submodule:
+
+```
+# Pull changes from ArmRiel fork
+git pull --recurse-submodules
+
+# Make sure the submodule is updated to the commit ArmRiel expects
+git submodule update --recursive
+```
+
+### Optional: Auto-update submodules on every pull
+
+```
+git config submodule.recurse true
+```
+
+After this, a normal `git pull` will also update submodules automatically.
+
+---
+
+## 3. When ArmRiel updates the LynxRobotics submodule
+
+If the ArmRiel repo has updated the LynxRobotics pointer:
+
+```
+# Pull the latest ArmRiel changes
+git pull
+
+# Update the submodule to the correct commit
+git submodule update --recursive
+```
+
+This ensures your local `LynxRobotics` folder matches the commit expected by ArmRiel.
+
+---
+
+## 4. Updating the submodule directly
+
+If you want to pull the latest changes from the LynxRobotics repo itself:
+
+```
+cd LynxRobotics
+git pull origin main   # or whichever branch you want
+cd ..
+git add LynxRobotics   # stage the updated commit pointer in ArmRiel
+git commit -m "Update LynxRobotics submodule"
+git push
+```
+
+This updates the submodule pointer in ArmRiel so teammates get the same version.
+
+---
+
+## 5. Resetting submodules (if things go wrong)
+
+If the submodule gets into a weird state:
+
+```
+git submodule deinit -f .
+git submodule update --init --recursive
+```
+
+This resets all submodules to their expected commits.
+
+---
+
+## ✅ Summary
+
+- **First-time setup:** `git submodule update --init --recursive`
+- **Regular updates:** `git pull --recurse-submodules` + `git submodule update --recursive`
+- **After submodule pointer changes:** pull ArmRiel, then `git submodule update --recursive`
+- **Direct submodule updates:** pull inside `LynxRobotics`, commit pointer in ArmRiel
+- **Troubleshooting:** reset with `git submodule deinit -f .` + `git submodule update --init --recursive`
+
+
+
+
+
+
+
+
+
 ![ariel-header](./docs/resources/ariel_header.svg)
 
 # ARIEL: Autonomous Robots through Integrated Evolution and Learning
